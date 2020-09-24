@@ -1,22 +1,15 @@
-console.log(`Time to play Rock, Paper, Scissors!`); // This line is to let the user know that the game has started
-let cpoints = 0;
-let ppoints = 0;
-const playerChoice = prompt(`Choose between Rock, Paper, and Scissors: `).toLowerCase(); //This line is a prompt to allow the user to make a choice
-const pcChoice = ['rock', 'paper', 'scissors']; //This line stores the choices avaiable to the computer
-console.log(`This is before the game function`);
-game(playerChoice, pcChoice, cpoints, ppoints);
+/*Todo list
+* Rework the logic so that the player if offered a choice for each round. Completed
+* Rework the for loop so that after 5 rounds, the winner is declared for the overall game.
+* Rework the validator function so that correct entries are submitted.
+*/
+
+
 //playRound(playerChoice, pcChoice);
 
-function game(playerChoice, pcChoice, cpoints, ppoints){ //This is a for loop counter which is supposed to create 5 rounds of the game.
-  console.log(`You are now in: game()`);
-  for (i = 0; i < 5; i++){ //Not really sure why the code isn't looping though; UPDATE: Had the wrong operator ;P
-    console.log(`You are now in: game() - for loop`);
-    if(cpoints >= 5){
-      console.log(`You Lose!`);
-    }else if (ppoints >= 5){
-      console.log(`You Win!`);
-    }else playRound(playerChoice, pcChoice);
-  }
+function userPlay(cChoice){
+  let choice = prompt(`Choose between Rock, Paper, and Scissors: `).toLowerCase(); //This line is a prompt to allow the user to make a choice
+  return choice;
 }
 
 /*function random(min,max) { // The function creates a random number within the array
@@ -25,9 +18,9 @@ function game(playerChoice, pcChoice, cpoints, ppoints){ //This is a for loop co
     return num;
   }// Found a cleaner method that combines both random and computerPlay
 */
-function computerPlay($pcChoice){ // This function generates a random choice using the random function
+function computerPlay(cChoice){ // This function generates a random choice using the random function
     console.log(`You are in the computer play function`);
-    let choice = pcChoice[Math.floor((Math.random()*3))]; // The random choice is generated here; Updated the selection process in this function
+    let choice = cChoice[Math.floor((Math.random()*3))]; // The random choice is generated here; Updated the selection process in this function
     return choice; // Then the choice is outputted through here
   }
 
@@ -39,41 +32,61 @@ function computerPlay($pcChoice){ // This function generates a random choice usi
 }
 */
 
-function playRound(playerSelection, computerSelection){
+function playRound(pChoice, cChoice, ppoints, cpoints){
   console.log(`You are in the playRound function`);
   //validate(playerChoice);
-  computerSelection = computerPlay();
-  playerSelection = playerChoice;
+  playerSelection = userPlay(pChoice);
+  computerSelection = computerPlay(cChoice);
   if (playerSelection === `rock` && computerSelection === `paper`){
       console.log(`You Lose! Paper beats Rock!`);
-      cpoints++;
+      return cpoints++;
   }else if (playerSelection === `rock` && computerSelection === `rock`){
       console.log(`Tie Game!`);
   }else if (playerSelection === `rock` && computerSelection === `scissors`){
     console.log(`You Win! Rock beats Scissors!`);
-    ppoints++;
+    return ppoints++;
   }
 
   if (playerSelection === `paper` && computerSelection === `scissors`){
       console.log(`You Lose! Scissors beats Paper!`);
-      cpoints++;
+      return cpoints++;
   }else if (playerSelection === `paper` && computerSelection === `paper`){
       console.log(`Tie Game!`);
   }else if (playerSelection === `paper` && computerSelection === `rock`){
       console.log(`You Win! Paper beats Rock!`);
-      ppoints++;
+      return ppoints++;
   }
   
   if (playerSelection === `scissors` && computerSelection === `rock`){
       console.log(`You Lose! Rock beats Scissors!`);
-      cpoints++;
+      return cpoints++;
   }else if (playerSelection === `scissors` && computerSelection === `scissors`){
       console.log(`Tie Game!`);
   }else if (playerSelection === `scissors` && computerSelection === `paper`){
       console.log(`You Win! Scissors beats Paper!`);
-      ppoints++;
+      return ppoints++;
   }
 }
+
+function game(){ //This is a for loop counter which is supposed to create 5 rounds of the game.
+  console.log(`Time to play Rock, Paper, Scissors!`); // This line is to let the user know that the game has started
+  let cpoints = 0;
+  let ppoints = 0;
+  let pChoice;
+  const cChoice = ['rock', 'paper', 'scissors']; //This line stores the choices avaiable to the computer
+  console.log(`This is before the game function`);
+  //game(pChoice,cChoice, cpoints, ppoints);
+  console.log(`You are now in: game()`);
+  for (i = 0; i < 5; i++){ //Not really sure why the code isn't looping though; UPDATE: Had the wrong operator ;P
+    console.log(`You are now in: game() - for loop`);
+    if(cpoints >= 5){
+      console.log(`You Lose!`);
+    }else if (ppoints >= 5){
+      console.log(`You Win!`);
+    }else playRound(pChoice, cChoice, ppoints, cpoints);
+  }
+}
+game();
 
   /*validate(playerSelection); // Old switch statement meant for decision making
   console.log("This is the playRound function!")
