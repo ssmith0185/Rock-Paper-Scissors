@@ -5,7 +5,7 @@
 */
 
 //function made specifically for providing and storing the user input. I might create a call to the validator as well
-function userPlay(pc){
+function userPlay(){
   let choice = prompt(`Choose between Rock, Paper, and Scissors: `).toLowerCase(); //This line is a prompt to allow the user to make a choice
   return choice;
 }
@@ -15,27 +15,24 @@ function computerPlay(cc){ // This function generates a random choice using the 
     return choice; // Then the choice is outputted through here
   }
 
-function playRound(results) {
+function playRound() {
   console.log(`You are in the playRound function`);
-  let pc; // pc = Player Choice; cc = Computer Choice
+  //cc = Computer Choice; pc = player choice
   const cc = ['rock', 'paper', 'scissors']; //This line stores the choices avaiable to the computer
-  ps = userPlay(pc); // ps = player selection
+  let pc = userPlay(); // ps = player selection
   cs = computerPlay(cc) // cs = computer selection
-  if (ps === cs){
-    console.log(ps);
-    console.log(`Tie Game!`);
+  if (pc === cs){
+    console.log(pc);
     return results = `tie`;
   };
-  if (ps === "rock" && cs === "scissors" ||
-      ps === "paper" && cs === "rock" ||
-      ps === "scissors" && cs === "paper"
+  if (pc === "rock" && cs === "scissors" ||
+      pc === "paper" && cs === "rock" ||
+      pc === "scissors" && cs === "paper"
   ) {
-    console.log(ps);
-    console.log(`You win this round!`);
+    console.log(pc);
     return results = `win`;
   } else {
-    console.log(ps);
-    console.log(`You lose this round`);
+    console.log(pc);
     return results = `lose`;
   }
 }
@@ -46,12 +43,8 @@ function game(){ //This is a for loop counter which is supposed to create 5 roun
   let pp = 0; // pp = Player Points
   let results;
   //console.log(`This is before the game function`);
-  console.log(`You are now in: game()`);
   for (i=0; i<5; i++){
-    console.log(`You are now in: game() - for loop`);
-    console.log(`We are on round ${i}`);
-    playRound(results);
-    console.log(results);
+    results = playRound();
     if (results === `win`){
       pp++;
       console.log(`You Win this round! \nPlayer Score: ${pp} \nComputer Score: ${cp}`);
