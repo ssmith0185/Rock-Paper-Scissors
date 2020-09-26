@@ -22,15 +22,21 @@ function playRound(results) {
   ps = userPlay(pc); // ps = player selection
   cs = computerPlay(cc) // cs = computer selection
   if (ps === cs){
+    console.log(ps);
+    console.log(`Tie Game!`);
     return results = `tie`;
   };
   if (ps === "rock" && cs === "scissors" ||
       ps === "paper" && cs === "rock" ||
       ps === "scissors" && cs === "paper"
   ) {
-    return `win`;
+    console.log(ps);
+    console.log(`You win this round!`);
+    return results = `win`;
   } else {
-    return `lose`;
+    console.log(ps);
+    console.log(`You lose this round`);
+    return results = `lose`;
   }
 }
 
@@ -45,18 +51,17 @@ function game(){ //This is a for loop counter which is supposed to create 5 roun
     console.log(`You are now in: game() - for loop`);
     console.log(`We are on round ${i}`);
     playRound(results);
+    console.log(results);
     if (results === `win`){
-      pp++
+      pp++;
       console.log(`You Win this round! \nPlayer Score: ${pp} \nComputer Score: ${cp}`);
-    }
-    else if (results === `lose`){
-      cp++
+    }else if (results === `lose`){
+      cp++;
       console.log(`You Lose this round! \nPlayer Score: ${pp} \nComputer Score: ${cp}`);
-    }
-    else if (results === `tie`){console.log(`Tie! No one wins this round! \nPlayer Score: ${pp} \nComputer Score: ${cp}`);}
+    }else if (results === `tie`){console.log(`Tie! No wins this round! \nPlayer Score: ${pp} \nComputer Score: ${cp}`);}
   }
   if (pp > cp){console.log(`Congratulations! You are the Rock Paper Scissors Champion!!`);}
   else if (cp > pp){console.log(`Game Over! You lose at Rock Paper Scissors!`);}
-  else console.log(`Tie Game. No one wins!`)
+  else if (pp === cp){console.log(`Tie Game. No one wins!`);}
  } 
  game();
