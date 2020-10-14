@@ -9,9 +9,10 @@ h1{
 #navbar{
     /*background-color: rgb(183, 204, 183);*/
     display: grid;
-    grid-template-columns: 50px 1fr 50px 50px 35px 70px;
+    grid-template-columns: 50px 50px 50px 50px;
     position: space-evenly;
     background-color: rgb(33, 41, 33);
+    line-height: 20px;
 }
 
 a{
@@ -61,5 +62,11 @@ img {
 }
 
 .footer{
-
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(33, 41, 33);
+    color: whitesmoke;
+    text-align: center;
 }
